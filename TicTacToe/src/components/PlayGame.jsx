@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Score from "./Score";
-import GridBox from './GridBox';
+import GridBox from "./GridBox";
+import Button_ from "./Button_";
 
 const PlayGame = () => {
   return (
@@ -10,14 +11,13 @@ const PlayGame = () => {
       </TextColorful>
       <TicTacToe>
         <Score />
-        <GridBox/>
+        <GridBox />
         <Toast>turn of x</Toast>
       </TicTacToe>
-      <Gap>
-        <Start>Play Again</Start>
-
-        <Start>Reset Score</Start>
-      </Gap>
+      <Buttons>
+        <Button_ btnLbl={"Play Again"} />
+        <Button_ btnLbl={"Reset Score"} />
+      </Buttons>
     </Container>
   );
 };
@@ -64,9 +64,6 @@ const TicTacToe = styled.div`
   padding: 112px 135px;
 `;
 
-
-
-
 const Toast = styled.div`
   color: white;
   border-radius: 5px;
@@ -78,28 +75,9 @@ const Toast = styled.div`
   font-size: larger;
 `;
 
-const Buttons = styled.div``;
-
-const Start = styled.button`
-  border-radius: 15px;
-  background: #975fb1;
-  padding: 10px 20px;
-  gap: 10px;
-  cursor: pointer;
-  font-family: "Fredoka", system-ui;
-  color: #2b0040;
-  font-size: 28px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  border: none;
-`;
-
-const Gap = styled.div`
+const Buttons = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   gap: 50px;
 `;
-
-
