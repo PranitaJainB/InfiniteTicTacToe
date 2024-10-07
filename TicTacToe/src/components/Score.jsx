@@ -8,7 +8,7 @@ const Score = () => {
           Player X
         </label>
         <label for="" class="score">
-          2
+          1
         </label>
       </ScoreBox>
       <ScoreBox className="draw">
