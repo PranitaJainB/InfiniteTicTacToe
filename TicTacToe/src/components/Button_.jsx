@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Button_ = ({btnLbl}) => {
+const Button_ = ({btnLbl,...props}) => {
   return (
-    <Start>{btnLbl}</Start>
+    <Start{...props}>{btnLbl}</Start>
   )
 }
 
