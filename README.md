@@ -1,5 +1,7 @@
 # TIC TAC TOE
+![image](https://github.com/user-attachments/assets/10b147f6-fc99-4592-805a-cdcf6bb0cc20)
 
+![image](https://github.com/user-attachments/assets/6c026352-7021-412c-b466-5eb2f22faba7)
 
 
 
