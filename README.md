@@ -56,4 +56,58 @@ const showGamePageFun = () => setShowGamePage(true);-->	showGamePageFun is a fun
 
 _________________
 
-10. 
+
+10. Please note how props are passed from drilling .
+const Cover = (props) => {
+  return <Btn lbl="abc" {...props} />;
+};
+
+const Btn = ({ lbl, ...rest }) => {
+  return (
+    <button {...rest}>
+      {lbl}
+    </button>
+  );
+};
+
+// Usage
+<Cover onClick={() => alert('Button clicked!')} className="btn-primary" />
+
+a. Destructuring Props:
+
+{ lbl, ...rest }: This extracts lbl from the props, and collects the remaining props in rest.
+lbl will be "abc" as passed by Cover.
+rest contains all other props that were passed to Cover and then spread to Btn using {...props}.
+
+b. Applying Props to the Button:
+
+<button {...rest}>: This spreads the rest props on the button element. It allows you to pass any other properties (e.g., onClick, className, etc.) through the Cover component to the button.
+
+c. What is the value of Props here ? 
+
+In the `Cover` component:
+
+```jsx
+const Cover = (props) => {
+  return <Btn lbl="abc" {...props} />;
+};
+```
+
+The value of `props` here refers to any properties that are passed to the `Cover` component when it is used. These `props` can include attributes like `onClick`, `className`, `style`, etc., depending on how the `Cover` component is used.
+
+For example, if you use `Cover` like this:
+
+```jsx
+<Cover onClick={() => alert('Button clicked!')} className="btn-primary" />
+```
+
+Then `props` will be:-
+
+```js
+{
+  onClick: () => alert('Button clicked!'),
+  className: "btn-primary"
+}
+```
+
+When `Cover` passes `{...props}` to `Btn`, `Btn` will receive `onClick` and `className` as props in addition to `lbl="abc"`.
