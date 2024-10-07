@@ -2,21 +2,20 @@ import styled from "styled-components";
 import Score from "./Score";
 import GridBox from "./GridBox";
 import Button_ from "./Button_";
+import ColorfulText from "./ColorfulText";
 
 const PlayGame = () => {
   return (
     <Container>
-      <TextColorful>
-        tic. <span>tac.</span> toe.
-      </TextColorful>
+      <ColorfulText />
       <TicTacToe>
         <Score />
         <GridBox />
         <Toast>turn of x</Toast>
       </TicTacToe>
       <Buttons>
-        <Button_ btnLbl={"Play Again"} />
-        <Button_ btnLbl={"Reset Score"} />
+        <Button_ onClick={()=>{alert("play clicked")}} btnLbl={"Play Again"} />
+        <Button_ onClick={()=>{alert("Reset clicked")}} btnLbl={"Reset Score"} />
       </Buttons>
     </Container>
   );
