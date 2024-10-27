@@ -3,19 +3,34 @@ import Score from "./Score";
 import GridBox from "./GridBox";
 import Button_ from "./Button_";
 import ColorfulText from "./ColorfulText";
+import { useState } from "react";
 
 const PlayGame = () => {
+  const [score, setScore] = useState(new Array(3).fill(0));
+  const [grid, setGrid] = useState(new Array(9).fill(null));
+  const [playerXTurn, setPlayerXTurn] = useState(true);
+
   return (
     <Container>
       <ColorfulText />
       <TicTacToe>
-        <Score />
-        <GridBox />
-        <Toast>turn of x</Toast>
+        <Score score={score} />
+        <GridBox grid={grid} playerXTurn={playerXTurn} />
+        <Toast>Player Turn : X</Toast>
       </TicTacToe>
       <Buttons>
-        <Button_ onClick={()=>{alert("play clicked")}} btnLbl={"Play Again"} />
-        <Button_ onClick={()=>{alert("Reset clicked")}} btnLbl={"Reset Score"} />
+        <Button_
+          onClick={() => {
+            alert("play clicked");
+          }}
+          btnLbl={"Play Again"}
+        />
+        <Button_
+          onClick={() => {
+            alert("Reset clicked");
+          }}
+          btnLbl={"Reset Score"}
+        />
       </Buttons>
     </Container>
   );
