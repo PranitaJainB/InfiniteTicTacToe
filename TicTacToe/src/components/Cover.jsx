@@ -9,7 +9,7 @@ const Cover = (props) => {
         <ColorfulText />
         <Button_ btnLbl={"Start Game"} {...props} />
         <Board>
-          <img src="/images/titactoe.png" alt="board" class="tictactoeBoard" />
+          <img src="/images/titactoe.png" alt="board" className="tictactoeBoard" />
         </Board>
       </Container>    
   );
