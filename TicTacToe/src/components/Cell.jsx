@@ -2,10 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import { styled } from "styled-components";
 
-const CellBox = (props) => {
+const CellBox = ({id,onDataFromChild2}) => {
+  const handleClick = (id1) => {   
+    onDataFromChild2(id1); // Send data back to Parent
+  };
   return (
-    <Cell>
-      <EnterChoiceTxt {...props}>X</EnterChoiceTxt>
+    <Cell id={id} onClick={()=>handleClick(id)}>
+      <EnterChoiceTxt>X</EnterChoiceTxt>
     </Cell>
   );
 };

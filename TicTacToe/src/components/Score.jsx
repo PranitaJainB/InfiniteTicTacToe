@@ -4,26 +4,26 @@ const Score = () => {
   return (
     <ScoreContainer>
       <ScoreBox className="x">
-        <label for="" class="PlayerLbl">
+        <label htmlFor="" className="PlayerLbl">
           Player X
         </label>
-        <label for="" class="score">
+        <label htmlFor="" className="score">
           1
         </label>
       </ScoreBox>
       <ScoreBox className="draw">
-        <label for="" class="PlayerLbl">
+        <label htmlFor="" className="PlayerLbl">
           Draw
         </label>
-        <label for="" class="score">
+        <label htmlFor="" className="score">
           2
         </label>
       </ScoreBox>
       <ScoreBox className="o">
-        <label for="" class="PlayerLbl">
+        <label htmlFor="" className="PlayerLbl">
           Player O
         </label>
-        <label for="" class="score">
+        <label htmlFor="" className="score">
           2
         </label>
       </ScoreBox>
