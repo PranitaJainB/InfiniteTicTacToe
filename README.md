@@ -1,5 +1,6 @@
 # TIC TAC TOE
 
+
  ![image](https://github.com/user-attachments/assets/10b147f6-fc99-4592-805a-cdcf6bb0cc20)
 
  ![image](https://github.com/user-attachments/assets/6c026352-7021-412c-b466-5eb2f22faba7)
@@ -16,6 +17,18 @@ https://www.figma.com/community/file/1254192154560627135
 
 
 
+<<<<<<< Updated upstream
+=======
+
+
+
+
+
+
+
+
+
+>>>>>>> Stashed changes
 1. write npm create vite@latest to create a project , provide info like project name , select framework and language etc. USE npm run dev to Run the project , don’t forget to cd TicTacToe
 2. styled components are being used ,useState is being used here
 3. map function used.
@@ -67,6 +80,18 @@ return (
 
 
 
+<<<<<<< Updated upstream
+=======
+
+
+
+
+
+
+
+
+
+>>>>>>> Stashed changes
 ________________
 
 Comparison:
@@ -81,6 +106,18 @@ const showGamePageFun = () => setShowGamePage(true);-->	showGamePageFun is a fun
 
 
 
+<<<<<<< Updated upstream
+=======
+
+
+
+
+
+
+
+
+
+>>>>>>> Stashed changes
 _________________
 
 
@@ -146,6 +183,18 @@ When `Cover` passes `{...props}` to `Btn`, `Btn` will receive `onClick` and `cla
 
 
 
+<<<<<<< Updated upstream
+=======
+
+
+
+
+
+
+
+
+
+>>>>>>> Stashed changes
 ________________
 
 
@@ -194,6 +243,142 @@ Page refresh: State values are lost unless saved externally.
 
     \]
 
-    React doesn’t require any extra handling for arrays of JSX elements. Just by embedding `{array}`, React will render each item in sequence. 
 
+
+React doesn’t require any extra handling for arrays of JSX elements. Just by embedding `{array}`, React will render each item in sequence. 
+
+
+
+
+17\. earlier I thought that components must be breaked as much as possible . and most tiniest size. But now i think this is incorrect because the more factorize the component is , the more you have to drill the props . same is the case when you have to send data back from child to parent , it will bubble up to many components . so question is what is the right place to define components . for example in
+\* in GRIDBOX components I have define 3 RowBox components
+\* in RowBox components I have define 3 CellBox components
+\* in CellBox components I have define 1 Cell components
+18\. Also at GRIDBOX level I need information of which cell clicked . and from GRIDBOX I have to further communicate to ScoreBox and and Toast to show which user turn . In that case i have the center point as Gridbox . Now how feasible is this to divide components and put them into different files ?
+
+```
+Answer. -→ Aim to split components based on distinct responsibilities rather than purely visual divisions. If a piece of UI or logic is only relevant within the context of a larger component (like `Cell` in `RowBox`), it may be better to keep it inside that larger component rather than creating a separate file for it.
+```
+
+
+19\. Before creating a component , decide how many child drilling you have to do , what is the neareast component which you might need data from child to parent , can that grandparent component be created as central component think first because how many other components does that grandparent component need to communicate , all the communicating compoentns should be inside one file.
+20\. while breaking down components into small pieces can make them more reusable and modular, it can also create complexity with prop drilling and state management. functionality should be centralized .
+21\. Reusable Components vs. Specialized Components
+\* if they’re tightly coupled with `GridBox`, it’s often simpler to keep them in the same file to reduce cognitive overhead
+
+### 2. **Prop Drilling vs. State Management**
+
+* **Prop drilling** can quickly get out of hand when there are multiple levels of nested components, as you’ve observed. To avoid this, you can use **context** for sharing data and functions across components without drilling.
+
+
+3\. How to fill 3\*3 size array  -
+
+```
+Array(3).fill(null).map(() => Array(3).fill(null))
+```
+
+
+4\. Score Component should have unique keys , because score box have same name classes . Also you should use array.map() function for rendering the score component -- when multiple `ScoreBox` components might share the same class names but need to be distinguished by their unique identifiers.
+5\. does state get re initialize every time component gets re render on change of state value -→ No, React preserves state between renders, so state does **not** get reinitialized every time a component re-renders due to a state change.
+6\. if and else are very basic conditions where programmer doesn’;t like writing if else , insteasd use ternary operator or AND operators
+7\. if condition && (function1() function2()) is this correct to call two functions in AND condition….--→
+
+No, the syntax `condition && (function1() function2())` is not correct in JavaScript. In JavaScript, you need to use a **comma** or a **semicolon** to separate function calls within parentheses.
+
+
+condition && (function1(), function2());
+
+
+if (condition) {
+function1();
+function2();
+}
+8\. **foreach vs for loop**
+
+
+
+
+
+
+1. `forEach`:
+   * You **cannot use** `break` or `continue` with `forEach`. If you need to exit early or skip elements based on conditions, you’ll need to use other methods like `for` or `every`.
+2. `for` loop:
+   * Allows the use of `break` and `continue`, making it suitable for cases where you want to interrupt or skip iterations based on certain conditions.
+3. condition && (function1(), function2()); in this function2 is returning a value how to get value in such case ?
+
+   
+   1. Yes, you can use the `&&` operator with multiple function calls by grouping them in parentheses. However, in JavaScript, the return value of an expression like this:
+
+      ```javascript
+      javascriptCopy codecondition && (function1(), function2());
+      
+      ```
+
+      will be **the result of** `function2()` if `condition` is true. This is because of the comma operator, which evaluates `function1()` first and then `function2()`, returning the result of the last expression, `function2()`.
+
+
+
+4\. this was the big problem as there was wrong 3d array created.
+
+```
+  const winningCombinations = [
+    [[0][0], [0][1], [0][2]],
+    [[1][0], [1][1], [1][2]],
+    [[2][0], [2][1], [2][2]],
+    [[0][0], [1][1], [2][2]],
+    [[0][2], [1][1], [2][0]],
+  ];
+```
+
+
+I struggles a lot to figure out , why values are coming a undefined when accessing winningCombinations\[0\]
+
+because winningCombinations\[0\] is
+
+\[
+
+\[0\]\[0\],
+
+\[0\]\[1\],
+
+\[0\]\[2\]
+
+\]
+
+now if you observe in 1st row -values are \[0\]\[1\] where as it should be \[0,1\]
+
+
+
+5\. let winningCondition = gridArr\[i\]\[j\] == null && (setGridArr((prev) => { let newArr = \[...prev\]; newArr\[i\]\[j\] = turn; return newArr; }), 6. There is problem in this code , it is not getting execute in 2nd condition after && . Reason is that when you call usestate , it doesn’t update state instantly - it is a ASYNC process . When you call setTurn and want to make sure that after the values are updated then only following steps are followed then for that use useEffect .
+
+
+Don’t implement too much of code at once : do this in blocks
+
+
+
+
+1. test for cell number when ever it is clicked
+2. test for if user is able to mark some character on it or not on every click. for example mark X on each cell
+
+
+# Date - 8th dec  2024
+
+
+I have deleted old style array , where I was passing 2d array . Instead I would now pass 1d array . also not loop over. Also I want to understand if is it possible to design such that in code If we want to use benefits of React like reload only that component which got modified , for example on click to cell only cell should get update. But in reality  there is 1) who chance is next title 2.) score as well getting update , and because of score and title bar we are updated so these couple of things are gonna update any how.. :upside_down_face: Do it , as fast as you can….
+
+
+don’t worry about where to write the code. Let keep it first inside the one file only. later we will see how components data it being passed from one file to other……Actually you know what , I would like to learn it from tutorial. As it has been 2 months last I typed . Don’t do this , please be active on coding , keep purple design but refer this code  . 
+
+
+:t-rex: :t-rex: :t-rex:
+
+<https://www.youtube.com/watch?v=4Gt_YyGf6B0&t=71s>
+
+<https://github.com/CodingWith-Adam/tic-tac-toe-react>
+
+
+
+
+
+ 
 
