@@ -3,13 +3,13 @@
 
 
 
-![Screenshot 2024-12-13 at 12 28 59 PM](https://github.com/user-attachments/assets/ca464dfc-8549-4f15-bf60-a4c2f150903f)
+ ![Screenshot 2024-12-13 at 12 28 59 PM](https://github.com/user-attachments/assets/ca464dfc-8549-4f15-bf60-a4c2f150903f)
 
-![Screenshot 2024-12-13 at 12 31 31 PM](https://github.com/user-attachments/assets/0e1b44bb-0650-4721-a883-4f1eef36fd8a)
+ ![Screenshot 2024-12-13 at 12 31 31 PM](https://github.com/user-attachments/assets/0e1b44bb-0650-4721-a883-4f1eef36fd8a)
 
-![Screenshot 2024-12-13 at 12 32 45 PM](https://github.com/user-attachments/assets/cb01f5db-a486-4a07-8ef3-b9bc5b7424ed)
+ ![Screenshot 2024-12-13 at 12 32 45 PM](https://github.com/user-attachments/assets/cb01f5db-a486-4a07-8ef3-b9bc5b7424ed)
 
-![Screenshot 2024-12-13 at 12 29 55 PM](https://github.com/user-attachments/assets/11fe567d-7287-422f-b7e0-a50fc58588ad)
+ ![Screenshot 2024-12-13 at 12 29 55 PM](https://github.com/user-attachments/assets/11fe567d-7287-422f-b7e0-a50fc58588ad)
 
 
 
@@ -18,6 +18,8 @@
 ### Figma Design
 
 https://www.figma.com/community/file/1254192154560627135
+
+
 
 
 
@@ -88,12 +90,16 @@ return (
 > Also want to mention here that when user clicks any button the whole page get refresh , and then we don’t know that what needs to be done after click of button . So on click we update the state - so we can take decision on the basis of state , as what do you want to show/hide in components .
 
 
+
+
 ________________
 
 Comparison:
 
 const showGamePageFun = setShowGamePage(true);	-->The setShowGamePage(true) function is called immediately, and its result is assigned to showGamePageFun. This means showGamePageFun is not a function.
 const showGamePageFun = () => setShowGamePage(true);-->	showGamePageFun is a function that will call setShowGamePage(true) when invoked. This is the correct approach if you want it to run on a button click or another event.
+
+
 
 
 
@@ -157,6 +163,8 @@ Then `props` will be:-
 ```
 
 When `Cover` passes `{...props}` to `Btn`, `Btn` will receive `onClick` and `className` as props in addition to `lbl="abc"`.
+
+
 
 
 
@@ -279,6 +287,8 @@ function2();
 
 
 
+
+
 1. `forEach`:
    * You **cannot use** `break` or `continue` with `forEach`. If you need to exit early or skip elements based on conditions, you’ll need to use other methods like `for` or `every`.
 2. `for` loop:
@@ -342,6 +352,8 @@ Don’t implement too much of code at once : do this in blocks
 
 
 
+
+
 1. test for cell number when ever it is clicked
 2. test for if user is able to mark some character on it or not on every click. for example mark X on each cell
 
@@ -389,8 +401,6 @@ see carefully what you are doing in this code …
 You have initialized with array and d now you are assigning 0 to array type. This is very common error.
 
 
----
-
 why this code not works
 
 scoreTemp = new Array(3).fill(0); setScore(\[...scoreTemp\])
@@ -402,17 +412,45 @@ const scoreTemp = new Array(3).fill(0); setScore(\[...scoreTemp\])
 why const matters , when js don't need let , const etc to declare variable.
 
 
----
-
-If you are using any type of usestate to assign it to another usestate then never directly assign this , instead 
+If you are using any type of usestate to assign it to another usestate then never directly assign this , instead
 
 ```
 const [toast,setToast] = useState(`Player Turn : ${playerXTurn?"X":"O"}`)
 ```
 
-use useeffect to assign the useState , because you never know what is the value of that use state . only use it in useeffect of that state. 
+use useeffect to assign the useState , because you never know what is the value of that use state . only use it in useeffect of that state.
+
+
+
+Once user won I’m showing a message of Game over. This message doesn’t go off , when I’m pressing RESET button . I was expecting on click to reset button , I change PlayerXTurn state with usestates . also call useeffect on change of state of PlayerXTurn. but there is one thing which i don't understand is on change of state component does it first call useeffect and then rerender the component , because I feel it's not applying code inside useeffect
+
+
+> `useEffect` Execution:
+>
+> * After the render is completed, React checks the dependencies of `useEffect`. If the dependencies (e.g., `PlayerXTurn` in your case) have changed, the effect function inside `useEffect` is executed.
+
+that means useEffect are not executed useeffect before render.UI will reflect the new state, but any logic inside `useEffect` happens after rendering.
+
+
+
+I noticed that on first click to reset btn, toast not reset . but on 2nd click it does.
+
+
+<https://stackoverflow.com/questions/64191896/usestate-in-useeffect-does-not-update-state>
+
+<https://github.com/facebook/react/issues/25593>
+
+
 
 
 ---
+
+```
+{ combo: [0, 1, 2], top: 40, rotate: 0, left: 44.5 }, { combo: [0, 1, 2], top: 40, rotate: 0, left: 44.5 },
+```
+
+
+make sure you keep state as small as possible , because then there are as many numbers of render as many as states. This is the main reason that big projects have schema , where they change schema , such that state don’t change a lot.
+
 
 

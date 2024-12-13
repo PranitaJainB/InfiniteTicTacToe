@@ -4,41 +4,35 @@ import GridBox from "./GridBox";
 import Button_ from "./Button_";
 import ColorfulText from "./ColorfulText";
 import { useEffect, useState } from "react";
+import toastText from "./toastText";
 
 const winnigCombination = [
-  { combo: [0, 1, 2], top: 40, rotate: 0, left: 44.5 },
-  { combo: [3, 4, 5], top: 53, rotate: 0, left: 44.5 },
-  { combo: [6, 7, 8], top: 66, rotate: 0, left: 44.5 },
+  { combo: [0, 1, 2], origin: [40, 0, 44.5] },
+  { combo: [3, 4, 5], origin: [53, 0, 44.5] },
+  { combo: [6, 7, 8], origin: [66, 0, 44.5] },
 
-  { combo: [0, 3, 6], top: 53, rotate: 90, left: 38 },
-  { combo: [1, 4, 7], top: 53, rotate: 90, left: 44.5 },
-  { combo: [2, 5, 8], top: 53, rotate: 90, left: 51 },
+  { combo: [0, 3, 6], origin: [53, 90, 38] },
+  { combo: [1, 4, 7], origin: [53, 90, 44.5] },
+  { combo: [2, 5, 8], origin: [53, 90, 51] },
 
-  { combo: [0, 4, 8], top: 53, rotate: 45, left: 44.5 },
-  { combo: [2, 4, 6], top: 53, rotate: -45, left: 44.5 },
+  { combo: [0, 4, 8], origin: [53, 45, 44.5] },
+  { combo: [2, 4, 6], origin: [53, -45, 44.5] },
 ];
-function checkWinner(
-  arr,
-  setTop,
-  setRotate,
-  setLeft,
-  setMakeStrike,
-  setToast,
-  setScore
-) {
+function checkWinner(arr, setOrigin, setMakeStrike, setToast, setScore) {
   for (let index = 0; index < winnigCombination.length; index++) {
     let winningCell = [...winnigCombination[index].combo];
-
     if (
       arr[winningCell[0]] != null &&
       arr[winningCell[0]] == arr[winningCell[1]] &&
       arr[winningCell[0]] == arr[winningCell[2]]
     ) {
-      setTop(winnigCombination[index].top);
-      setRotate(winnigCombination[index].rotate);
-      setLeft(winnigCombination[index].left);
+      setOrigin([...winnigCombination[index].origin]);
       setMakeStrike(true);
-      setToast(`Game Over.Player ${arr[winningCell[0]]} Wins!`);
+      setToast(
+        arr[winningCell[0]] == "X"
+          ? toastText.PlayerXWins
+          : toastText.PlayerOWins
+      );
       setScore((prev) => {
         let tempScore = [...prev];
         arr[winningCell[0]] == "X" ? tempScore[0]++ : tempScore[2]++;
@@ -49,7 +43,7 @@ function checkWinner(
   }
   const noNullFound = arr.every((item) => item != null);
   if (noNullFound) {
-    setToast(`Game draw!`);
+    setToast(toastText.GameDraw);
     setScore((prev) => {
       let tempScore = [...prev];
       tempScore[1]++;
@@ -58,16 +52,14 @@ function checkWinner(
   }
 }
 
-
 const PlayGame = () => {
+  console.log("component rendered");
   const [score, setScore] = useState(new Array(3).fill(0));
   const [arr, setArr] = useState(new Array(9).fill(null));
   const [playerXTurn, setPlayerXTurn] = useState(true);
   const [makeStrike, setMakeStrike] = useState(false);
-  const [top, setTop] = useState(0);
-  const [rotate, setRotate] = useState(0);
-  const [left, setLeft] = useState(0);
   const [toast, setToast] = useState(" ");
+  const [origin, setOrigin] = useState(new Array(3).fill(0));
 
   const handleCellClicked = (cellID) => {
     //if cell is not empty then don't do any action
@@ -77,10 +69,6 @@ const PlayGame = () => {
     newArr[cellID] = playerXTurn ? "X" : "O";
     setArr([...newArr]);
     setPlayerXTurn(!playerXTurn);
-    // setToast(`Player Turn : ${playerXTurn?"X":"O"}`)
-
-    //this two usestate changes are asyn done with promises , we're not sure when promise gets finished
-    //for making sure we use useeffect.
   };
   function newGame() {
     const arrTemp = new Array(9).fill(null);
@@ -89,32 +77,19 @@ const PlayGame = () => {
     setMakeStrike(false);
   }
   const reset = () => {
+    newGame();
     const scoreTemp = new Array(3).fill(0);
     setScore([...scoreTemp]);
-    const arrTemp = new Array(9).fill(null);    
-    setArr([...arrTemp]);
-    setPlayerXTurn(true);
-    setMakeStrike(false);
   };
+
   useEffect(() => {
-    reset();
-  }, []);
-  useEffect(() => {
-    setToast(`Player Turn : ${playerXTurn ? "X" : "O"}`);
+
+    setToast(playerXTurn ? toastText.PlayerXTurn : toastText.PlayerOTurn);
   }, [playerXTurn]);
 
   useEffect(() => {
-    checkWinner(
-      arr,
-      setTop,
-      setRotate,
-      setLeft,
-      setMakeStrike,
-      setToast,
-      setScore
-    );
+    checkWinner(arr, setOrigin, setMakeStrike, setToast, setScore);
   }, [arr]);
-
   return (
     <Container>
       <ColorfulText />
@@ -125,16 +100,14 @@ const PlayGame = () => {
           playerXTurn={playerXTurn}
           onCellClicked={handleCellClicked}
           strike={makeStrike}
-          top={top}
-          rotate={rotate}
-          left={left}
+          origin={origin}
         />
         <Toast>{toast}</Toast>
       </TicTacToe>
       <Buttons>
         <Button_
           onClick={() => {
-             newGame();
+            newGame();
           }}
           btnLbl={"New Game"}
         />

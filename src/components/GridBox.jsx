@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
 
-const GridBox = ({arr,playerXTurn,onCellClicked,top,rotate,left,strike}) => {
+const GridBox = ({ arr, playerXTurn, onCellClicked, origin, strike }) => {
   const handleClick = (cellID) => {
-    onCellClicked(cellID)
+    onCellClicked(cellID);
   };
   return (
     <div>
@@ -40,7 +40,7 @@ const GridBox = ({arr,playerXTurn,onCellClicked,top,rotate,left,strike}) => {
           <EnterChoiceTxt>{arr[8]}</EnterChoiceTxt>
         </Cell>
       </Row>
-      {strike && <Line top={top} rotate={rotate} left={left}/>}
+      {strike && <Line top={origin[0]} rotate={origin[1]} left={origin[2]} />}
     </div>
   );
 };
@@ -78,9 +78,9 @@ const EnterChoiceTxt = styled.div`
 const Line = styled.div`
   width: 18%;
   height: 2px;
-  left:${(props)=>props.left}%;
-  top: ${(props)=>props.top}%;
+  left: ${(props) => props.left}%;
+  top: ${(props) => props.top}%;
   position: absolute;
   background-color: #48d2fe;
-   transform: rotate(${(props)=>props.rotate}deg);
+  transform: rotate(${(props) => props.rotate}deg);
 `;
