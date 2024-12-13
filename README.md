@@ -1,8 +1,13 @@
 # TIC TAC TOE
 
- ![image](https://github.com/user-attachments/assets/10b147f6-fc99-4592-805a-cdcf6bb0cc20)
+![Screenshot 2024-12-13 at 12 28 59 PM](https://github.com/user-attachments/assets/ca464dfc-8549-4f15-bf60-a4c2f150903f)
 
- ![image](https://github.com/user-attachments/assets/6c026352-7021-412c-b466-5eb2f22faba7)
+![Screenshot 2024-12-13 at 12 31 31 PM](https://github.com/user-attachments/assets/0e1b44bb-0650-4721-a883-4f1eef36fd8a)
+
+![Screenshot 2024-12-13 at 12 32 45 PM](https://github.com/user-attachments/assets/cb01f5db-a486-4a07-8ef3-b9bc5b7424ed)
+
+![Screenshot 2024-12-13 at 12 29 55 PM](https://github.com/user-attachments/assets/11fe567d-7287-422f-b7e0-a50fc58588ad)
+
 
 
 
