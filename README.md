@@ -18,7 +18,6 @@ https://www.figma.com/community/file/1254192154560627135
 
 
 <<<<<<< Updated upstream
-=======
 
 
 
@@ -28,7 +27,14 @@ https://www.figma.com/community/file/1254192154560627135
 
 
 
->>>>>>> Stashed changes
+> > > > > > > Stashed changes
+
+
+
+
+
+
+
 1. write npm create vite@latest to create a project , provide info like project name , select framework and language etc. USE npm run dev to Run the project , don’t forget to cd TicTacToe
 2. styled components are being used ,useState is being used here
 3. map function used.
@@ -81,7 +87,6 @@ return (
 
 
 <<<<<<< Updated upstream
-=======
 
 
 
@@ -91,7 +96,14 @@ return (
 
 
 
->>>>>>> Stashed changes
+> > > > > > > Stashed changes
+
+
+
+
+
+
+
 ________________
 
 Comparison:
@@ -107,7 +119,6 @@ const showGamePageFun = () => setShowGamePage(true);-->	showGamePageFun is a fun
 
 
 <<<<<<< Updated upstream
-=======
 
 
 
@@ -117,7 +128,14 @@ const showGamePageFun = () => setShowGamePage(true);-->	showGamePageFun is a fun
 
 
 
->>>>>>> Stashed changes
+> > > > > > > Stashed changes
+
+
+
+
+
+
+
 _________________
 
 
@@ -184,7 +202,6 @@ When `Cover` passes `{...props}` to `Btn`, `Btn` will receive `onClick` and `cla
 
 
 <<<<<<< Updated upstream
-=======
 
 
 
@@ -194,7 +211,14 @@ When `Cover` passes `{...props}` to `Btn`, `Btn` will receive `onClick` and `cla
 
 
 
->>>>>>> Stashed changes
+> > > > > > > Stashed changes
+
+
+
+
+
+
+
 ________________
 
 
@@ -230,22 +254,24 @@ Page refresh: State values are lost unless saved externally.
 ```
 
 
-15. <MyComponent key={id} id={id} /> is it not sufficient to make key unique and find out which component was clicked by key value ? key is used internally by react , If you need to track which specific component was clicked, you should pass an explicit prop (like `id`) to identify it within the component.
-16. <div> {ids.map((id) => ( <MyComponent key={id} id={id} onClick={handleClick} /> ))} </div> here what will ids.map() will return -→ 
+15\. <MyComponent key={id} id={id} /> is it not sufficient to make key unique and find out which component was clicked by key value ? key is used internally by react , If you need to track which specific component was clicked, you should pass an explicit prop (like `id`) to identify it within the component.
+16\. <div> {ids.map((id) => ( <MyComponent key={id} id={id} onClick={handleClick} /> ))} </div> here what will ids.map() will return -→
 
-    \[
+```
+\[
 
-     <MyComponent key={1} id={1} onClick={handleClick} />, 
+ <MyComponent key={1} id={1} onClick={handleClick} />, 
 
-    <MyComponent key={2} id={2} onClick={handleClick} />, 
+<MyComponent key={2} id={2} onClick={handleClick} />, 
 
-    <MyComponent key={3} id={3} onClick={handleClick} /> 
+<MyComponent key={3} id={3} onClick={handleClick} /> 
 
-    \]
+\]
+```
 
 
 
-React doesn’t require any extra handling for arrays of JSX elements. Just by embedding `{array}`, React will render each item in sequence. 
+React doesn’t require any extra handling for arrays of JSX elements. Just by embedding `{array}`, React will render each item in sequence.
 
 
 
@@ -294,6 +320,12 @@ function1();
 function2();
 }
 8\. **foreach vs for loop**
+
+
+
+
+
+
 
 
 
@@ -357,6 +389,12 @@ Don’t implement too much of code at once : do this in blocks
 
 
 
+
+
+
+
+
+
 1. test for cell number when ever it is clicked
 2. test for if user is able to mark some character on it or not on every click. for example mark X on each cell
 
@@ -367,7 +405,7 @@ Don’t implement too much of code at once : do this in blocks
 I have deleted old style array , where I was passing 2d array . Instead I would now pass 1d array . also not loop over. Also I want to understand if is it possible to design such that in code If we want to use benefits of React like reload only that component which got modified , for example on click to cell only cell should get update. But in reality  there is 1) who chance is next title 2.) score as well getting update , and because of score and title bar we are updated so these couple of things are gonna update any how.. :upside_down_face: Do it , as fast as you can….
 
 
-don’t worry about where to write the code. Let keep it first inside the one file only. later we will see how components data it being passed from one file to other……Actually you know what , I would like to learn it from tutorial. As it has been 2 months last I typed . Don’t do this , please be active on coding , keep purple design but refer this code  . 
+don’t worry about where to write the code. Let keep it first inside the one file only. later we will see how components data it being passed from one file to other……Actually you know what , I would like to learn it from tutorial. As it has been 2 months last I typed . Don’t do this , please be active on coding , keep purple design but refer this code  .
 
 
 :t-rex: :t-rex: :t-rex:
@@ -377,8 +415,57 @@ don’t worry about where to write the code. Let keep it first inside the one fi
 <https://github.com/CodingWith-Adam/tic-tac-toe-react>
 
 
+```javascript
+        <Cell id={1} onClick={() => handleClick(id)}>
+          <EnterChoiceTxt>{gridArr[1]}</EnterChoiceTxt>
+        </Cell>
+```
+
+In above code you can see that  onClick={() => handleClick(id)} The issue seems to be with how the `id` prop is passed to the `Cell` component. but inside the `onClick` handler, `id` is not in scope.
 
 
+make sure that you never set useState inside the component , it should always be set on click of button or inside useEffect or on any event . otherwise it will be infinite loop , and it will through error saying too many renders.
 
- 
+
+```
+  const [score, setScore] = useState(new Array(3).fill(0));
+```
+
+
+```
+ setScore(0)
+```
+
+
+see carefully what you are doing in this code …
+
+You have initialized with array and d now you are assigning 0 to array type. This is very common error.
+
+
+---
+
+why this code not works
+
+scoreTemp = new Array(3).fill(0); setScore(\[...scoreTemp\])
+
+but this works why this code not works
+
+const scoreTemp = new Array(3).fill(0); setScore(\[...scoreTemp\])
+
+why const matters , when js don't need let , const etc to declare variable.
+
+
+---
+
+If you are using any type of usestate to assign it to another usestate then never directly assign this , instead 
+
+```
+const [toast,setToast] = useState(`Player Turn : ${playerXTurn?"X":"O"}`)
+```
+
+use useeffect to assign the useState , because you never know what is the value of that use state . only use it in useeffect of that state. 
+
+
+---
+
 

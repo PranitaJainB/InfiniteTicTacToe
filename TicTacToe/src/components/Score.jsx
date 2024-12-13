@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Score = () => {
+const Score = ({score}) => {
   return (
     <ScoreContainer>
       <ScoreBox className="x">
@@ -8,7 +8,7 @@ const Score = () => {
           Player X
         </label>
         <label htmlFor="" className="score">
-          1
+        {score[0]}
         </label>
       </ScoreBox>
       <ScoreBox className="draw">
@@ -16,7 +16,7 @@ const Score = () => {
           Draw
         </label>
         <label htmlFor="" className="score">
-          2
+       { score[1]}
         </label>
       </ScoreBox>
       <ScoreBox className="o">
@@ -24,7 +24,7 @@ const Score = () => {
           Player O
         </label>
         <label htmlFor="" className="score">
-          2
+        {score[2]}
         </label>
       </ScoreBox>
     </ScoreContainer>
