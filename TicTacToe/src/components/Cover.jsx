@@ -3,7 +3,7 @@ import ColorfulText from "./ColorfulText";
 import Button_ from "./Button_";
 
 const Cover = (props) => {
-  
+
   return (    
       <Container>
         <ColorfulText />

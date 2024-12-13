@@ -1,9 +1,17 @@
 # TIC TAC TOE
 
 
- ![image](https://github.com/user-attachments/assets/10b147f6-fc99-4592-805a-cdcf6bb0cc20)
 
- ![image](https://github.com/user-attachments/assets/6c026352-7021-412c-b466-5eb2f22faba7)
+
+![Screenshot 2024-12-13 at 12 28 59 PM](https://github.com/user-attachments/assets/ca464dfc-8549-4f15-bf60-a4c2f150903f)
+
+![Screenshot 2024-12-13 at 12 31 31 PM](https://github.com/user-attachments/assets/0e1b44bb-0650-4721-a883-4f1eef36fd8a)
+
+![Screenshot 2024-12-13 at 12 32 45 PM](https://github.com/user-attachments/assets/cb01f5db-a486-4a07-8ef3-b9bc5b7424ed)
+
+![Screenshot 2024-12-13 at 12 29 55 PM](https://github.com/user-attachments/assets/11fe567d-7287-422f-b7e0-a50fc58588ad)
+
+
 
 
 
@@ -17,7 +25,6 @@ https://www.figma.com/community/file/1254192154560627135
 
 
 
-<<<<<<< Updated upstream
 
 
 
@@ -27,7 +34,6 @@ https://www.figma.com/community/file/1254192154560627135
 
 
 
-> > > > > > > Stashed changes
 
 
 
@@ -82,54 +88,12 @@ return (
 > Also want to mention here that when user clicks any button the whole page get refresh , and then we don’t know that what needs to be done after click of button . So on click we update the state - so we can take decision on the basis of state , as what do you want to show/hide in components .
 
 
-
-
-
-
-<<<<<<< Updated upstream
-
-
-
-
-
-
-
-
-
-> > > > > > > Stashed changes
-
-
-
-
-
-
-
 ________________
 
 Comparison:
 
 const showGamePageFun = setShowGamePage(true);	-->The setShowGamePage(true) function is called immediately, and its result is assigned to showGamePageFun. This means showGamePageFun is not a function.
 const showGamePageFun = () => setShowGamePage(true);-->	showGamePageFun is a function that will call setShowGamePage(true) when invoked. This is the correct approach if you want it to run on a button click or another event.
-
-
-
-
-
-
-
-
-<<<<<<< Updated upstream
-
-
-
-
-
-
-
-
-
-> > > > > > > Stashed changes
-
 
 
 
@@ -195,23 +159,6 @@ Then `props` will be:-
 When `Cover` passes `{...props}` to `Btn`, `Btn` will receive `onClick` and `className` as props in addition to `lbl="abc"`.
 
 
-
-
-
-
-
-
-<<<<<<< Updated upstream
-
-
-
-
-
-
-
-
-
-> > > > > > > Stashed changes
 
 
 
