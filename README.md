@@ -1,8 +1,5 @@
 # TIC TAC TOE
 
-
-
-
  ![Screenshot 2024-12-13 at 12 28 59 PM](https://github.com/user-attachments/assets/ca464dfc-8549-4f15-bf60-a4c2f150903f)
 
  ![Screenshot 2024-12-13 at 12 31 31 PM](https://github.com/user-attachments/assets/0e1b44bb-0650-4721-a883-4f1eef36fd8a)
@@ -12,37 +9,12 @@
  ![Screenshot 2024-12-13 at 12 29 55 PM](https://github.com/user-attachments/assets/11fe567d-7287-422f-b7e0-a50fc58588ad)
 
 
-
-
-
 ### Figma Design
 
 https://www.figma.com/community/file/1254192154560627135
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+### Using README for Documenting my Learnings while creating this project
 1. write npm create vite@latest to create a project , provide info like project name , select framework and language etc. USE npm run dev to Run the project , don’t forget to cd TicTacToe
 2. styled components are being used ,useState is being used here
 3. map function used.
