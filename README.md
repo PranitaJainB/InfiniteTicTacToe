@@ -15,19 +15,20 @@ https://www.figma.com/community/file/1254192154560627135
 
 
 ### Using README for Documenting my Learnings while creating this project
-1. write npm create vite@latest to create a project , provide info like project name , select framework and language etc. USE npm run dev to Run the project , don’t forget to cd TicTacToe
-2. styled components are being used ,useState is being used here
-3. map function used.
-4. always refer the figma design but make sure that how you want to align the items - FLEX !!!!!!
-5. always type some text inside the empty div , else effects of css will not get render on  empty div
-6. how to write code for ternary operator - The condition is wrapped inside {} because it needs to be evaluated as JavaScript within JSX.
+1. write npm create vite@latest to create a project , provide info like project name , select framework and language etc. USE npm run dev to Run the project , don’t forget to cd TicTacToe. To clone the git repository , open command pallete and there you type clone command and then copy ssh github link to clone. you can find it on repository main page. Once you clone it will ask for local folder where you want to clone.
+2. If you have to create new project and push it into repository ,then do these steps : Create an empty repository and then clone it in VS code, then install react project.
+3. styled components are being used ,useState is being used here
+4. map function used.
+5. always refer the figma design but make sure that how you want to align the items - FLEX !!!!!!
+6. always type some text inside the empty div , else effects of css will not get render on  empty div
+7. how to write code for ternary operator - The condition is wrapped inside {} because it needs to be evaluated as JavaScript within JSX.
    <>
    {gameStarted?   "play again":"show coverpage "}
    </>
-7. when refresh , page needs score preserved , also the way to remember the current state of game and render the same route which is /game
+8. when refresh , page needs score preserved , also the way to remember the current state of game and render the same route which is /game
    in this you will understand how to get back to the same route even after refresh  ?
-8. Idea is to set variable in parent component so that if child component gets re-render , whole child state is saved in side the parent component.
-9. gameStarted state is handled at app.js to make decision which page - cover/game to show on screen . but I wonder what will we do after keeping track of this variable , what is the advantage of gameStarted.  Well I thought earlier that we will be toggle between cover and game page. But that is not the reason ternary operator is used. Main reason is to render the game page on click of "Play now" button . Since you can assume that Cover page is the parent page and on click of "Play now" button we are trying to show the child page which is GAME page . In the parent component, use a state variable to control when the child component should be rendered. You can toggle the state by clicking the button.There are two different scenarios for conditionally rendering the child component :
+9. Idea is to set variable in parent component so that if child component gets re-render , whole child state is saved in side the parent component.
+10. gameStarted state is handled at app.js to make decision which page - cover/game to show on screen . but I wonder what will we do after keeping track of this variable , what is the advantage of gameStarted.  Well I thought earlier that we will be toggle between cover and game page. But that is not the reason ternary operator is used. Main reason is to render the game page on click of "Play now" button . Since you can assume that Cover page is the parent page and on click of "Play now" button we are trying to show the child page which is GAME page . In the parent component, use a state variable to control when the child component should be rendered. You can toggle the state by clicking the button.There are two different scenarios for conditionally rendering the child component :
 
    
    1. when child component lies inside the parent component page
